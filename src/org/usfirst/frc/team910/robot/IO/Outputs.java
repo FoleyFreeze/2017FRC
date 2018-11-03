@@ -1,8 +1,7 @@
 package org.usfirst.frc.team910.robot.IO;
 
-import com.ctre.CANTalon;
-import com.ctre.CANTalon.FeedbackDevice;
-import com.ctre.CANTalon.TalonControlMode;
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.Talon;
@@ -18,26 +17,26 @@ public class Outputs {
 	
 	//private static final double SHOOTER_SPEED_LIMIT = 500; //when to ramp to full power
 
-	// private CANTalon leftMotor1;
-	// private CANTalon leftMotor2;
-	// private CANTalon rightMotor1;
-	// private CANTalon rightMotor2;
-	private CANTalon leftDriveCan1;
-	private CANTalon leftDriveCan2;
-	private CANTalon leftDriveCan3;
-	private CANTalon rightDriveCan1;
-	private CANTalon rightDriveCan2;
-	private CANTalon rightDriveCan3;
+	// private CANTalonPassthrough leftMotor1;
+	// private CANTalonPassthrough leftMotor2;
+	// private CANTalonPassthrough rightMotor1;
+	// private CANTalonPassthrough rightMotor2;
+	private CANTalonPassthrough leftDriveCan1;
+	private CANTalonPassthrough leftDriveCan2;
+	private CANTalonPassthrough leftDriveCan3;
+	private CANTalonPassthrough rightDriveCan1;
+	private CANTalonPassthrough rightDriveCan2;
+	private CANTalonPassthrough rightDriveCan3;
 	//private Talon leftDrive;
 	//private Talon rightDrive;
-	private CANTalon shooterMotor;
-	private CANTalon transporterMotor;
-	private CANTalon agitatorMotor;
-	private CANTalon climbMotor1;
-	private CANTalon climbMotor2;
-	private CANTalon gearRollerMotor;
-	private CANTalon gearPanelMotor1;
-	private CANTalon gearPanelMotor2;
+	private CANTalonPassthrough shooterMotor;
+	private CANTalonPassthrough transporterMotor;
+	private CANTalonPassthrough agitatorMotor;
+	private CANTalonPassthrough climbMotor1;
+	private CANTalonPassthrough climbMotor2;
+	private CANTalonPassthrough gearRollerMotor;
+	private CANTalonPassthrough gearPanelMotor1;
+	private CANTalonPassthrough gearPanelMotor2;
 	private PowerDistributionPanel pdp;
 
 	public double leftDriveEncoder;
@@ -58,33 +57,33 @@ public class Outputs {
 	public double climb2Current;
 
 	public Outputs() {
-		// leftMotor1 = new CANTalon(ElectroPaul.LEFT_MOTOR_PORT_1);
-		// leftMotor2 = new CANTalon(ElectroPaul.LEFT_MOTOR_PORT_2);
-		// rightMotor1 = new CANTalon(ElectroPaul.RIGHT_MOTOR_PORT_1);
-		// rightMotor2 = new CANTalon(ElectroPaul.RIGHT_MOTOR_PORT_2);
-		leftDriveCan1 = new CANTalon(ElectroPaul.LEFT_DRIVE_CAN1);		
-		leftDriveCan1.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
+		// leftMotor1 = new CANTalonPassthrough(ElectroPaul.LEFT_MOTOR_PORT_1);
+		// leftMotor2 = new CANTalonPassthrough(ElectroPaul.LEFT_MOTOR_PORT_2);
+		// rightMotor1 = new CANTalonPassthrough(ElectroPaul.RIGHT_MOTOR_PORT_1);
+		// rightMotor2 = new CANTalonPassthrough(ElectroPaul.RIGHT_MOTOR_PORT_2);
+		leftDriveCan1 = new CANTalonPassthrough(ElectroPaul.LEFT_DRIVE_CAN1);		
+		leftDriveCan1.setFeedbackDevice(FeedbackDevice.CTRE_MagEncoder_Relative);
 		leftDriveCan1.setEncPosition(0);
 		leftDriveCan1.reverseSensor(true);
-		leftDriveCan2 = new CANTalon(ElectroPaul.LEFT_DRIVE_CAN2);
-		leftDriveCan3 = new CANTalon(ElectroPaul.LEFT_DRIVE_CAN3);
+		leftDriveCan2 = new CANTalonPassthrough(ElectroPaul.LEFT_DRIVE_CAN2);
+		leftDriveCan3 = new CANTalonPassthrough(ElectroPaul.LEFT_DRIVE_CAN3);
 		//leftDrive = new Talon(ElectroPaul.LEFT_DRIVE);
 		
-		rightDriveCan1 = new CANTalon(ElectroPaul.RIGHT_DRIVE_CAN1);
-		rightDriveCan1.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
+		rightDriveCan1 = new CANTalonPassthrough(ElectroPaul.RIGHT_DRIVE_CAN1);
+		rightDriveCan1.setFeedbackDevice(FeedbackDevice.CTRE_MagEncoder_Relative);
 		rightDriveCan1.setEncPosition(0);
 		rightDriveCan1.setInverted(true);
-		rightDriveCan2 = new CANTalon(ElectroPaul.RIGHT_DRIVE_CAN2);
+		rightDriveCan2 = new CANTalonPassthrough(ElectroPaul.RIGHT_DRIVE_CAN2);
 		rightDriveCan2.setInverted(true);
-		rightDriveCan3 = new CANTalon(ElectroPaul.RIGHT_DRIVE_CAN3);
+		rightDriveCan3 = new CANTalonPassthrough(ElectroPaul.RIGHT_DRIVE_CAN3);
 		rightDriveCan3.setInverted(true);
 		//rightDrive = new Talon(ElectroPaul.RIGHT_DRIVE);
 		//rightDrive.setInverted(true);
 
-		shooterMotor = new CANTalon(ElectroPaul.SHOOTER_MOTOR);
+		shooterMotor = new CANTalonPassthrough(ElectroPaul.SHOOTER_MOTOR);
 		shooterMotor.enableBrakeMode(false);
 		shooterMotor.configPeakOutputVoltage(0, -12);
-		shooterMotor.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
+		shooterMotor.setFeedbackDevice(FeedbackDevice.CTRE_MagEncoder_Relative);
 		shooterMotor.setInverted(false);
 		shooterMotor.reverseOutput(true);
 		shooterMotor.reverseSensor(true); 
@@ -98,43 +97,43 @@ public class Outputs {
 	
 		shooterMotor.configPeakOutputVoltage(0, -6); //half power to start bang bang
 
-		transporterMotor = new CANTalon(ElectroPaul.TRANSPORTER_MOTOR);
+		transporterMotor = new CANTalonPassthrough(ElectroPaul.TRANSPORTER_MOTOR);
 		transporterMotor.enableBrakeMode(true);
 		transporterMotor.setInverted(true);
 		transporterMotor.reverseOutput(false);
 		transporterMotor.reverseSensor(true);
 		transporterMotor.configPeakOutputVoltage(0, -12);
-		transporterMotor.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
+		transporterMotor.setFeedbackDevice(FeedbackDevice.CTRE_MagEncoder_Relative);
 		transporterMotor.setPID(0.025, 0, 0.03, 0.04, 0, 0, 0);
 		
 		
-		agitatorMotor = new CANTalon(ElectroPaul.AGITATOR_MOTOR);
+		agitatorMotor = new CANTalonPassthrough(ElectroPaul.AGITATOR_MOTOR);
 		agitatorMotor.enableBrakeMode(false);
-		agitatorMotor.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
+		agitatorMotor.setFeedbackDevice(FeedbackDevice.CTRE_MagEncoder_Relative);
 		agitatorMotor.setInverted(true);
 		agitatorMotor.reverseOutput(true);
 		agitatorMotor.reverseSensor(false);
 		agitatorMotor.setPID(0, 0.0001, 0, 0.038, 0, 0, 0);
 		//agitatorMotor.setVoltageRampRate(12);
 		
-		climbMotor1 = new CANTalon(ElectroPaul.CLIMB_MOTOR_1);
-		climbMotor2 = new CANTalon(ElectroPaul.CLIMB_MOTOR_2);
+		climbMotor1 = new CANTalonPassthrough(ElectroPaul.CLIMB_MOTOR_1);
+		climbMotor2 = new CANTalonPassthrough(ElectroPaul.CLIMB_MOTOR_2);
 		climbMotor1.enableBrakeMode(true);
 		climbMotor2.enableBrakeMode(true);
-		gearRollerMotor = new CANTalon(ElectroPaul.GEAR_ROLLER_MOTOR);
+		gearRollerMotor = new CANTalonPassthrough(ElectroPaul.GEAR_ROLLER_MOTOR);
 		gearRollerMotor.reverseOutput(true);
 		gearRollerMotor.setInverted(true);
 		
-		gearPanelMotor1 = new CANTalon(ElectroPaul.GEAR_PANEL_MOTOR_1);
+		gearPanelMotor1 = new CANTalonPassthrough(ElectroPaul.GEAR_PANEL_MOTOR_1);
 		gearPanelMotor1.enableBrakeMode(false);
-		gearPanelMotor1.setFeedbackDevice(FeedbackDevice.AnalogEncoder);
+		gearPanelMotor1.setFeedbackDevice(FeedbackDevice.Analog);
 		gearPanelMotor1.configPeakOutputVoltage(10, -10);
 		gearPanelMotor1.setPID(7,0,30);//(7, 0, 30);
 		//gearPanelMotor1.reverseOutput(true);
 		//gearPanelMotor1.reverseSensor(true);
-		gearPanelMotor2 = new CANTalon(ElectroPaul.GEAR_PANEL_MOTOR_2);
+		gearPanelMotor2 = new CANTalonPassthrough(ElectroPaul.GEAR_PANEL_MOTOR_2);
 		gearPanelMotor2.enableBrakeMode(false);
-		gearPanelMotor2.setFeedbackDevice(FeedbackDevice.AnalogEncoder);
+		gearPanelMotor2.setFeedbackDevice(FeedbackDevice.Analog);
 		gearPanelMotor2.configPeakOutputVoltage(10, -10);
 		gearPanelMotor2.setPID(7,0,30);//(7, 0, 30);
 		//gearPanelMotor2.reverseOutput(true);
@@ -176,7 +175,7 @@ public class Outputs {
 	}
 
 	public void setShooterPower(double power) {
-		shooterMotor.changeControlMode(TalonControlMode.PercentVbus); //Lets shooter be set by power
+		shooterMotor.changeControlMode(ControlMode.PercentOutput); //Lets shooter be set by power
 		if (currentMonitor(ElectroPaul.SHOOTER_MOTOR) || limitActive) { //Prevent fire hazard by monitoring current
 			shooterMotor.set(0);
 		} else {
@@ -187,10 +186,10 @@ public class Outputs {
 	public void setShooterSpeed(double speed) { //Lets shooter be powered by speed
 
 		if (currentMonitor(ElectroPaul.SHOOTER_MOTOR) || limitActive) { //Fire hazard prevention	
-			shooterMotor.changeControlMode(TalonControlMode.PercentVbus);
+			shooterMotor.changeControlMode(ControlMode.PercentOutput);
 			shooterMotor.set(0);
 		} else {
-			shooterMotor.changeControlMode(TalonControlMode.Speed);
+			shooterMotor.changeControlMode(ControlMode.Velocity);
 			//shooterMotor.changeControlMode(TalonControlMode.PercentVbus);
 			shooterMotor.set(speed);
 			
@@ -209,7 +208,7 @@ public class Outputs {
 	}
 
 	public void setTransportPower(double power) { //Lets transporter be set by power
-		transporterMotor.changeControlMode(TalonControlMode.PercentVbus);
+		transporterMotor.changeControlMode(ControlMode.PercentOutput);
 		if (currentMonitor(ElectroPaul.TRANSPORTER_MOTOR)) { //Fire hazard prevention
 			transporterMotor.set(0);
 		} else {
@@ -219,17 +218,17 @@ public class Outputs {
 
 	public void setTransportSpeed(double speed) { //Lets transporter be set by power
 		if (currentMonitor(ElectroPaul.TRANSPORTER_MOTOR)) { //Fire hazard prevention
-			transporterMotor.changeControlMode(TalonControlMode.PercentVbus); 
+			transporterMotor.changeControlMode(ControlMode.PercentOutput); 
 			transporterMotor.set(0);
 		} else {
-			transporterMotor.changeControlMode(TalonControlMode.Speed);
+			transporterMotor.changeControlMode(ControlMode.PercentOutput);
 			//transporterMotor.set(speed);
 			transporterMotor.setSetpoint(speed);
 		}
 	}
 
 	public void setAgitatorPower(double power) { //Lets agitator be set by power
-		agitatorMotor.changeControlMode(TalonControlMode.PercentVbus);
+		agitatorMotor.changeControlMode(ControlMode.PercentOutput);
 		agitatorMotor.set(power*limitValue);
 	}
 
@@ -238,7 +237,7 @@ public class Outputs {
 		if(limitActive){
 			setAgitatorPower(0);
 		} else {
-			agitatorMotor.changeControlMode(TalonControlMode.Speed);
+			agitatorMotor.changeControlMode(ControlMode.Velocity);
 			if (speed <= 0){
 				agitatorMotor.configPeakOutputVoltage(0, -12);
 			} else {
@@ -264,16 +263,16 @@ public class Outputs {
 	}
 
 	public void setGearPanelPower(double power) {
-		gearPanelMotor1.changeControlMode(TalonControlMode.PercentVbus);
-		gearPanelMotor2.changeControlMode(TalonControlMode.PercentVbus);
+		gearPanelMotor1.changeControlMode(ControlMode.PercentOutput);
+		gearPanelMotor2.changeControlMode(ControlMode.PercentOutput);
 		gearPanelMotor1.set(power);
 		gearPanelMotor2.set(power);
 
 	}
 
 	public void setGearPanelPosition(double posL, double posR) {
-		gearPanelMotor1.changeControlMode(TalonControlMode.Position);
-		gearPanelMotor2.changeControlMode(TalonControlMode.Position);
+		gearPanelMotor1.changeControlMode(ControlMode.PercentOutput);
+		gearPanelMotor2.changeControlMode(ControlMode.PercentOutput);
 		gearPanelMotor1.set(posL);
 		gearPanelMotor2.set(posR);
 	}
