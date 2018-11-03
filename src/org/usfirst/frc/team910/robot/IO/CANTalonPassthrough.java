@@ -62,25 +62,33 @@ public class CANTalonPassthrough {
 	}
 
 	public void set(double d) {
-		controller.set(mode, d);
+		if(mode == ControlMode.Position) { 
+			controller.set(mode, d);
+		} else if(mode == ControlMode.Velocity) {
+			controller.set(mode, d*7);
+		} else {
+			controller.set(mode, d);
+		}
 	}
 
 	public void changeControlMode(ControlMode percentoutput) {
 		mode = percentoutput;
 	}
 
-	public int getSpeed() {
-		return controller.getSelectedSensorVelocity(0);
+	public double getSpeed() {
+		return controller.getSelectedSensorVelocity(0) / 7;
 	}
 
 	public void setSetpoint(double speed) {
-		if(mode == ControlMode.Position || mode == ControlMode.Velocity) {
+		if(mode == ControlMode.Position) { 
 			controller.set(mode, speed);
+		} else if(mode == ControlMode.Velocity) {
+			controller.set(mode, speed*7);
 		}
 	}
 
 	public double getPosition() {
-		return controller.getSelectedSensorPosition(0);
+		return controller.getSelectedSensorPosition(0) ;
 	}
 
 	public double getOutputVoltage() {

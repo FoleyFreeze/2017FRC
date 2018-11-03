@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Shooter {
 	private static final double SHOOTER_SPEED = 1865;// 1740; //1820; //1830; //1850;
-	private static final double JOG_AMOUNT = 10;
+	private static final double JOG_AMOUNT = 10*5;
 	private static final double ALLOWABLE_SHOOTER_ERROR = 70;
 	
 	private static final double AGI_FILT = 0.2;
